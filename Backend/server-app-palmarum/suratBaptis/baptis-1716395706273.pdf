@@ -1,0 +1,1 @@
+{"error":"Gagal mendapatkan file surat baptis: failed to execute stored procedure: sql: Scan error on column index 0, name \"file_surat_baptis\": converting NULL to string is unsupported"}
