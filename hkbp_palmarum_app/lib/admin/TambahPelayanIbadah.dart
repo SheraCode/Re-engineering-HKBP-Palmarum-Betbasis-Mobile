@@ -35,7 +35,7 @@ class _TambahPelayanIbadahState extends State<TambahPelayanIbadah> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchPelayanIbadah() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/pelayanan-ibadah-all'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/pelayanan-ibadah-all'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
@@ -81,7 +81,7 @@ class _TambahPelayanIbadahState extends State<TambahPelayanIbadah> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchJadwalIbadah() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/jadwal-ibadah'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/jadwal-ibadah'));
 
     if (response.statusCode == 200) {
       // Jika request berhasil, parse response body ke dalam List<Map<String, dynamic>>
@@ -105,7 +105,7 @@ class _TambahPelayanIbadahState extends State<TambahPelayanIbadah> {
     try {
 
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/warta/create'),
+        Uri.parse('http://172.20.10.4:2005/warta/create'),
         headers: {
           'Content-Type': 'application/json', // Tambahkan header Content-Type
         },
@@ -173,7 +173,7 @@ class _TambahPelayanIbadahState extends State<TambahPelayanIbadah> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/pelayan-kebaktian/create'),
+        Uri.parse('http://172.20.10.4:2005/pelayan-kebaktian/create'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'id_jemaat': idJemaat,

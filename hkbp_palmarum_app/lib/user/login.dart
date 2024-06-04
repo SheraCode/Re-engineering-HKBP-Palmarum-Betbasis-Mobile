@@ -63,7 +63,7 @@ class _LoginState extends State<login> with TickerProviderStateMixin {
 
         // Melakukan permintaan POST ke endpoint login
         final response = await http.post(
-          Uri.parse('http://172.20.10.2:2005/jemaat/login'),
+          Uri.parse('http://172.20.10.4:2005/jemaat/login'),
           body: jsonEncode(body),
           headers: {'Content-Type': 'application/json'},
         );

@@ -36,7 +36,7 @@ class _UploadFotoState extends State<uploadfoto> {
       return;
     }
 
-    final url = Uri.parse('http://172.20.10.2:2005/jemaat/${widget.idJemaat}/image');
+    final url = Uri.parse('http://172.20.10.4:2005/jemaat/${widget.idJemaat}/image');
 
     var request = http.MultipartRequest('POST', url);
     request.files.add(await http.MultipartFile.fromPath('image', _image!.path));

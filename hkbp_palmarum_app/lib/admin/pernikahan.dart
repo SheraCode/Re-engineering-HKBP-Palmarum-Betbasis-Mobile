@@ -30,7 +30,7 @@ class _PernikahanState extends State<pernikahan> {
   }
 
   Future<void> fetchPernikahanData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/pernikahan/all'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/pernikahan/all'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);

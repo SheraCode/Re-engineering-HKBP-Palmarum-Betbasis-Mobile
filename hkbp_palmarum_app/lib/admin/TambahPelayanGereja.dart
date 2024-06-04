@@ -42,7 +42,7 @@ class _TambahPelayanGerejaState extends State<TambahPelayanGereja> {
   Future<bool> _checkNamaPelayanExists(String namaPelayan) async {
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/pelayan-majelis'),
+        Uri.parse('http://172.20.10.4:2005/pelayan-majelis'),
       );
 
       if (response.statusCode == 200) {
@@ -95,7 +95,7 @@ class _TambahPelayanGerejaState extends State<TambahPelayanGereja> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/pelayan/create'),
+        Uri.parse('http://172.20.10.4:2005/pelayan/create'),
         headers: {
           'Content-Type': 'application/json',
         },

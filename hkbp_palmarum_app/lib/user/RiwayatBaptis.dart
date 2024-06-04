@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // Fungsi untuk mengambil daftar pemasukan dari endpoint
 Future<List<dynamic>> fetchPemasukanList(String idJemaat) async {
-  final response = await http.get(Uri.parse('http://172.20.10.2:2005/baptis/$idJemaat'));
+  final response = await http.get(Uri.parse('http://172.20.10.4:2005/baptis/$idJemaat'));
 
   if (response.statusCode == 200) {
     return json.decode(response.body);
@@ -91,7 +91,7 @@ class _RiwayatBaptisState extends State<RiwayatBaptis> {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text('Failed to load pemasukan list'),
+              child: Text('Tidak Ada Data Riwayat Baptis'),
             );
           } else {
             List<dynamic> pemasukanList = snapshot.data!;

@@ -107,7 +107,7 @@ class _detailProfilState extends State<detailProfil> {
 
 
   Future<void> updateJemaatProfile(int jemaatId, String namaDepan, String namaBelakang, String tempatLahir, String telepon, String alamat, String email) async {
-    String url = 'http://172.20.10.2:2005/jemaat/profil/$jemaatId';
+    String url = 'http://172.20.10.4:2005/jemaat/profil/$jemaatId';
 
     String noHp = telepon.replaceAll(RegExp(r'\D+'), ''); // Menghapus karakter selain angka
     int nomorTelepon = int.tryParse(noHp) ?? 0; // Mengonversi ke integer, atau gunakan nilai default jika tidak berhasil
@@ -226,7 +226,7 @@ class _detailProfilState extends State<detailProfil> {
                           SizedBox(height: 20),
                           CircleAvatar(
                             radius: 50,
-                            backgroundImage: NetworkImage('http://172.20.10.2:2005/jemaat/$id_jemaat/image'),
+                            backgroundImage: NetworkImage('http://172.20.10.4:2005/jemaat/$id_jemaat/image'),
                           ),
                           SizedBox(height: 20),
                           Text(

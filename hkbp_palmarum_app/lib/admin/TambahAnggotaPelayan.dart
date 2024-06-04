@@ -48,7 +48,7 @@ class _TambahAnggotaPelayanState extends State<TambahAnggotaPelayan> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/pelayanan-ibadah/create'),
+        Uri.parse('http://172.20.10.4:2005/pelayanan-ibadah/create'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -99,7 +99,7 @@ class _TambahAnggotaPelayanState extends State<TambahAnggotaPelayan> {
   Future<bool> _checkNamaPelayananExists(String namaPelayanan) async {
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/pelayanan-ibadah-all'),
+        Uri.parse('http://172.20.10.4:2005/pelayanan-ibadah-all'),
       );
 
       if (response.statusCode == 200) {

@@ -34,7 +34,7 @@ class _IsiKegiatanState extends State<sejarahGereja> {
   }
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/sejarah-gereja'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/sejarah-gereja'));
     if (response.statusCode == 200) {
       List<dynamic> responseData = json.decode(response.body);
       if (responseData.isNotEmpty) {

@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hkbp_palmarum_app/admin/AccountJemaat.dart';
+import 'package:hkbp_palmarum_app/admin/Pengeluaran.dart';
+import 'package:hkbp_palmarum_app/admin/WartaJemaat.dart';
+import 'package:hkbp_palmarum_app/admin/baptis.dart';
+import 'package:hkbp_palmarum_app/admin/kegiatan.dart';
+import 'package:hkbp_palmarum_app/admin/malua.dart';
+import 'package:hkbp_palmarum_app/admin/pemasukan.dart';
+import 'package:hkbp_palmarum_app/admin/pernikahan.dart';
 import 'package:hkbp_palmarum_app/user/DrawerWidget.dart';
 
 class admin extends StatelessWidget {
@@ -18,6 +26,18 @@ class admin extends StatelessWidget {
 
   ];
 
+  static final Map<String, Widget> routes = {
+    "Kegiatan": kegiatan(),
+    "Pemasukan": pemasukan(),
+    "Jemaat": AccountJemaat(),
+    "Pengeluaran": pengeluaran(),
+    "Baptis": baptis(),
+    "Pernikahan":pernikahan(),
+    "Naik Sidi": malua(),
+    "Warta Jemaat": WartaJemaat()
+    // Add more routes here
+  };
+
   static const List<String> titles = [
     "Jemaat",
     "Kegiatan",
@@ -25,11 +45,10 @@ class admin extends StatelessWidget {
     "Pengeluaran",
     "Baptis",
     "Pernikahan",
-    "Angkat Sidi",
+    "Naik Sidi",
     "Warta Jemaat"
 
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +96,7 @@ class admin extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Dashboard",
+                            Text("Dashboard\nHKBP Palmarum",
                               style: TextStyle(
                                   fontSize: 30,
                                   color: Colors.white,
@@ -85,14 +104,6 @@ class admin extends StatelessWidget {
                                   letterSpacing: 1
                               ),
                             ),
-                            SizedBox(height: 10,),
-                            Text("Last Update: 7 Aug 2023",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white54,
-                                  letterSpacing: 1
-                              ),
-                            )
                           ],
                         ),
                       )
@@ -120,7 +131,16 @@ class admin extends StatelessWidget {
                         itemCount: imgSrc.length,
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: (){},
+                            onTap: () {
+                              // Navigate to the corresponding page
+                              String title = titles[index];
+                              if (routes.containsKey(title)) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => routes[title]!)
+                                );
+                              }
+                            },
                             child: Container(
                               margin: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                               decoration: BoxDecoration(
@@ -137,9 +157,7 @@ class admin extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Image.asset(imgSrc[index],
-                                    width: 100,
-                                  ),
+                                  Image.asset(imgSrc[index], width: 100),
                                   Text(
                                     titles[index],
                                     style: TextStyle(

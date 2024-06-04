@@ -42,7 +42,7 @@ class _EditJadwalIbadahState extends State<EditJadwalIbadah> {
 
   Future<void> fetchData(String idJadwalIbadah) async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/jadwal-ibadah/$idJadwalIbadah'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/jadwal-ibadah/$idJadwalIbadah'));
       if (response.statusCode == 200) {
         // Ambil data jadwal ibadah berdasarkan idJadwalIbadah
         var jadwalIbadah = jsonDecode(response.body);
@@ -82,7 +82,7 @@ class _EditJadwalIbadahState extends State<EditJadwalIbadah> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.put(
-        Uri.parse('http://172.20.10.2:2005/jadwal-ibadah/${widget.idJadwalIbadah}'),
+        Uri.parse('http://172.20.10.4:2005/jadwal-ibadah/${widget.idJadwalIbadah}'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -177,7 +177,7 @@ class _EditJadwalIbadahState extends State<EditJadwalIbadah> {
   Future<void> _createWarta(String sesiIbadahText, String keteranganIbadahText) async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/jadwal-ibadah/create'),
+        Uri.parse('http://172.20.10.4:2005/jadwal-ibadah/create'),
         headers: {
           'Content-Type': 'application/json',
         },

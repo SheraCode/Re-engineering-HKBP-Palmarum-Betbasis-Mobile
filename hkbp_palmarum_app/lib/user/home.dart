@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hkbp_palmarum_app/admin/Pengeluaran.dart';
 import 'package:hkbp_palmarum_app/admin/home.dart';
 import 'package:hkbp_palmarum_app/admin/kegiatan.dart';
+import 'package:hkbp_palmarum_app/user/CobaREQBaptis.dart';
 import 'package:hkbp_palmarum_app/user/ConfirmBaptis.dart';
 import 'package:hkbp_palmarum_app/user/ConfirmSidi.dart';
+import 'package:hkbp_palmarum_app/user/PilihSidi.dart';
 import 'package:hkbp_palmarum_app/user/RegistrasiSidi.dart';
 import 'package:hkbp_palmarum_app/user/UlangTahunJemaat.dart';
 import 'package:hkbp_palmarum_app/user/WartaJemaat.dart';
@@ -74,7 +76,7 @@ late int _selectedStatus;
 
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/berita/home'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/berita/home'));
     if (response.statusCode == 200) {
       setState(() {
 
@@ -88,7 +90,7 @@ late int _selectedStatus;
   }
 
   Future<void> fetchWarta() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/warta/home'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/warta/home'));
     if (response.statusCode == 200) {
       setState(() {
         wartaList = json.decode(response.body);
@@ -131,7 +133,7 @@ late int _selectedStatus;
   List<String> teks = [
     'Baptis',
     'Pernikahan',
-    'Angkat Sidi',
+    'Naik Sidi',
     'Warta Jemaat',
     'Pelayan Harian',
     'Pelayan Gereja',
@@ -240,6 +242,14 @@ late int _selectedStatus;
                           } else {
                             // Jika nilainya 3 dan index adalah 3 (Warta Jemaat), 4 (Pelayan Harian), atau 5 (Pelayan Gereja), maka navigasikan ke halaman yang sesuai
                             switch (index) {
+                              case 1:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => craetePernikahan(),
+                                  ),
+                                );
+                                break;
                               case 3:
                                 Navigator.push(
                                   context,
@@ -275,7 +285,7 @@ late int _selectedStatus;
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ConfirmBaptis(),
+                                  builder: (context) => CobaBaptis(),
                                 ),
                               );
                               break;
@@ -291,7 +301,7 @@ late int _selectedStatus;
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ConfirmSidi(),
+                                  builder: (context) => PilihSidi(),
                                 ),
                               );
                               break;
@@ -436,7 +446,7 @@ late int _selectedStatus;
                                 ),
                               ],
                               image: DecorationImage(
-                                image: NetworkImage('http://172.20.10.2:2005/kegiatan/${berita['id_waktu_kegiatan']}/image'),
+                                image: NetworkImage('http://172.20.10.4:2005/kegiatan/${berita['id_waktu_kegiatan']}/image'),
                                 fit: BoxFit.cover,
                                 colorFilter: ColorFilter.mode(
                                   Colors.black.withOpacity(0.6),
@@ -510,6 +520,7 @@ late int _selectedStatus;
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 18,
                           fontFamily: 'fira'
                       ),// penataan teks
                     ),
@@ -681,11 +692,11 @@ late int _selectedStatus;
                     // Tentukan teks dan ikon berdasarkan indeks
                     switch (index) {
                       case 0:
-                        text = 'Keuangan \nPemasukan';
+                        text = 'Pemasukan \Keuangan';
                         iconData = Icons.monetization_on_outlined;
                         break;
                       case 1:
-                        text = 'Keuangan \nPengeluaran';
+                        text = 'Pengeluaran \Keuangan';
                         iconData = Icons.monetization_on_outlined;
                         break;
                       case 2:

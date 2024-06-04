@@ -121,7 +121,7 @@ class _createDetailConfirmSidiState extends State<DetailConfirmSidi> {
 
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/sidi/byid/${widget.idRegistrasiSidi}'), // Use widget.idRegistrasiSidi here
+        Uri.parse('http://172.20.10.4:2005/sidi/byid/${widget.idRegistrasiSidi}'), // Use widget.idRegistrasiSidi here
       );
 
       if (response.statusCode == 200) {
@@ -227,7 +227,7 @@ class _createDetailConfirmSidiState extends State<DetailConfirmSidi> {
 
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://172.20.10.2:2005/sidi/create'),
+      Uri.parse('http://172.20.10.4:2005/sidi/create'),
     );
 
     request.fields['id_jemaat'] = idJemaat.toString(); // Convert to String
@@ -327,7 +327,7 @@ class _createDetailConfirmSidiState extends State<DetailConfirmSidi> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Angkat Sidi",
+                                "Naik Sidi",
                                 style: TextStyle(
                                   fontSize: 30,
                                   color: Colors.white,
@@ -339,7 +339,7 @@ class _createDetailConfirmSidiState extends State<DetailConfirmSidi> {
                                 height: 10,
                               ),
                               Text(
-                                "Request Surat Angkat Sidi Jemaat",
+                                "Request Surat Naik Sidi Jemaat",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white54,

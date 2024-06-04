@@ -50,7 +50,7 @@ class _riwayatState extends State<riwayat> {
   List<String> titles = [
     'Registrasi Baptis',
     'Registrasi Pernikahan',
-    'Registrasi Angkat Sidi',
+    'Registrasi Naik Sidi',
     // Tambahkan judul lainnya sesuai jumlah gambar
   ];
 

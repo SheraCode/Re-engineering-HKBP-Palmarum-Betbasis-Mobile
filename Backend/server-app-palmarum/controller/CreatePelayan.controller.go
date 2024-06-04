@@ -23,7 +23,7 @@ func (wc *CreatePelayanController) CreateWarta(c *gin.Context) {
 	}
 
 	// Buat data pelayanCreate di database
-	err = database.CreatePelayanKebaktian(pelayanCreate.IDJemaat, pelayanCreate.IDPelayananIbadah, pelayanCreate.IDPelayananIbadah, pelayanCreate.Keterangan)
+	err = database.CreatePelayanKebaktian(pelayanCreate.IDJemaat, pelayanCreate.IDJadwalIbadah, pelayanCreate.IDPelayananIbadah, pelayanCreate.Keterangan)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

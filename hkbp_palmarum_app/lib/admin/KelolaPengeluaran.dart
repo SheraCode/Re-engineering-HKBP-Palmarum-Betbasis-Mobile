@@ -78,7 +78,7 @@ class _KelolaPemasukanState extends State<KelolaPengeluaran> {
 
   Future<void> fetchData() async {
     try {
-      final Uri url = Uri.parse('http://172.20.10.2:2005/pengeluaran/${widget.idPemasukan}');
+      final Uri url = Uri.parse('http://172.20.10.4:2005/pengeluaran/${widget.idPemasukan}');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -124,7 +124,7 @@ class _KelolaPemasukanState extends State<KelolaPengeluaran> {
         return; // Jangan lanjutkan proses jika gambar tidak dipilih
       }
 
-      var url = 'http://172.20.10.2:2005/pengeluaran';
+      var url = 'http://172.20.10.4:2005/pengeluaran';
       var request = http.MultipartRequest('PUT', Uri.parse(url));
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -325,7 +325,7 @@ class _KelolaPemasukanState extends State<KelolaPengeluaran> {
                             )
                                 : ClipOval(
                               child: Image.network(
-                                'http://172.20.10.2:2005/pengeluaran/image/$idPemasukan',
+                                'http://172.20.10.4:2005/pengeluaran/image/$idPemasukan',
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,

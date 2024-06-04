@@ -19,7 +19,7 @@ class _WartaJemaatState extends State<WartaJemaat> {
 
   Future<void> fetchWarta() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/warta'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/warta'));
       if (response.statusCode == 200) {
         final List<dynamic> decodedData = json.decode(response.body);
         setState(() {

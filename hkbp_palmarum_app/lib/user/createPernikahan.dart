@@ -71,7 +71,7 @@ class _CreatePernikahanState extends State<craetePernikahan> {
       return;
     }
 
-    final String url = 'http://172.20.10.2:2005/pernikahan/create';
+    final String url = 'http://172.20.10.4:2005/pernikahan/create';
 
     final response = await http.post(
       Uri.parse(url),

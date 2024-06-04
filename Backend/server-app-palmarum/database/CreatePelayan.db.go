@@ -9,7 +9,7 @@ func CreatePelayanKebaktian(idJemaat, idJadwalIbadah, idPelayananIbadah int, ket
 	}
 	defer db.Close()
 
-	_, err = db.Exec("CALL CreatePelayanIbadahData(?, ?, ?, ?)", idJemaat, idPelayananIbadah, idJadwalIbadah, keterangan)
+	_, err = db.Exec("CALL CreatePelayanIbadahData(?, ?, ?, ?)", idJemaat, idJadwalIbadah, idPelayananIbadah, keterangan)
 	if err != nil {
 		return err
 	}

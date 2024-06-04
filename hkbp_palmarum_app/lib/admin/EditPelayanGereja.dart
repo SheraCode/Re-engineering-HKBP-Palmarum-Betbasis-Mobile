@@ -40,7 +40,7 @@ class _EditPelayanGerejaState extends State<EditPelayanGereja> {
 
   Future<void> fetchData(String idJadwalIbadah) async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/pelayan/$idJadwalIbadah'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/pelayan/$idJadwalIbadah'));
       if (response.statusCode == 200) {
         // Ambil data jadwal ibadah berdasarkan idJadwalIbadah
         var pelayanGerja = jsonDecode(response.body);
@@ -78,7 +78,7 @@ class _EditPelayanGerejaState extends State<EditPelayanGereja> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.put(
-        Uri.parse('http://172.20.10.2:2005/pelayan/edit/$idPelayan'),
+        Uri.parse('http://172.20.10.4:2005/pelayan/edit/$idPelayan'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -147,7 +147,7 @@ class _EditPelayanGerejaState extends State<EditPelayanGereja> {
   Future<void> _createPelayananIbadah(String namaPelayanan, String keterangan) async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/pelayan/create'),
+        Uri.parse('http://172.20.10.4:2005/pelayan/create'),
         headers: {
           'Content-Type': 'application/json',
         },

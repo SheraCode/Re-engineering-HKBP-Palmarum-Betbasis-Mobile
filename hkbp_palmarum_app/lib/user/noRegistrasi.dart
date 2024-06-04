@@ -128,7 +128,7 @@ class _NoRegisterState extends State<noRegister> {
       return;
     }
 
-    var url = Uri.parse('http://172.20.10.2:2005/jemaat');
+    var url = Uri.parse('http://172.20.10.4:2005/jemaat');
 
     var response = await http.post(
       url,
@@ -233,7 +233,6 @@ class _NoRegisterState extends State<noRegister> {
       'isBaptis': statusBaptis,
       'isMenikah': statusPernikahan,
       'gol_darah': golonganDarah,
-      'id_hub_keluarga': status,
       'bidang_pendidikan_lainnya': namaBidangPendidikanLainnya,
       'nama_pekerjaan_lainnya': namaPekerjaanLainnya,
       'id_kecamatan': kecamatan,
@@ -244,7 +243,7 @@ class _NoRegisterState extends State<noRegister> {
     String jsonBody = jsonEncode(body);
 
     // Buat URL untuk request PUT atau PATCH
-    var url = Uri.parse('http://172.20.10.2:2005/jemaat/$jemaatId');
+    var url = Uri.parse('http://172.20.10.4:2005/jemaat/$jemaatId');
 
     // Kirim request PUT atau PATCH
     var response = await http.put(
@@ -796,36 +795,6 @@ class _NoRegisterState extends State<noRegister> {
                         ),
                       ).p4().px24(),
 
-                  SizedBox(height: 10,),
-                  if (_isRegistered)
-                    DropdownButtonFormField<int>(
-                      value: selectedStatusIndex, // Gunakan variabel untuk nilai dropdown status
-                      onChanged: (int? newValue) {
-                        setState(() {
-                          selectedStatusIndex = newValue; // Tetapkan nilai newValue ke variabel
-                          print(selectedStatusIndex);
-                        });
-                      },
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        labelText: "Status",
-                        hintText: "Pilih Status",
-                        errorStyle: TextStyle(fontSize: 15, color: Colors.red),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        ),
-                        prefixIcon: Icon(Icons.info), // Icon sesuaikan dengan jenis status
-                      ),
-                      items: statusList.asMap().entries.map<DropdownMenuItem<int>>(
-                            (MapEntry<int, String> entry) {
-                          return DropdownMenuItem<int>(
-                            value: entry.key, // Gunakan indeks sebagai nilai DropdownMenuItem
-                            child: Text(entry.value),
-                          );
-                        },
-                      ).toList(),
-                    ).p4().px24(),
 
 
                   SizedBox(height: 10,),

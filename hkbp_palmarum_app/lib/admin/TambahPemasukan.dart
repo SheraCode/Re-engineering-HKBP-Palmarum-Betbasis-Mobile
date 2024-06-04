@@ -78,7 +78,7 @@ class _TambahPemasukanState extends State<TambahPemasukan> {
 
   Future<void> _createPemasukan() async {
     try {
-      final apiUrl = 'http://172.20.10.2:2005/pemasukan/create';
+      final apiUrl = 'http://172.20.10.4:2005/pemasukan/create';
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('token');

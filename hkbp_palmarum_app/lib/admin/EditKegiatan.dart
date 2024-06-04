@@ -89,7 +89,7 @@ class _EditKegiatanState extends State<EditKegiatan> {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       int idJemaat = decodedToken['id_jemaat'];
 
-      var url = 'http://172.20.10.2:2005/berita/${widget.fotoKegiatan}';
+      var url = 'http://172.20.10.4:2005/berita/${widget.fotoKegiatan}';
       var request = http.MultipartRequest('PUT', Uri.parse(url));
 
       // Tambahkan gambar baru jika dipilih oleh pengguna
@@ -262,7 +262,7 @@ class _EditKegiatanState extends State<EditKegiatan> {
                             )
                                 : ClipOval(
                               child: Image.network(
-                                'http://172.20.10.2:2005/kegiatan/${widget.fotoKegiatan}/image',
+                                'http://172.20.10.4:2005/kegiatan/${widget.fotoKegiatan}/image',
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,

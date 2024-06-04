@@ -57,7 +57,7 @@ class _WartaJemaatState extends State<kegiatanGereja> {
 
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/berita'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/berita'));
     if (response.statusCode == 200) {
       setState(() {
         beritaList = json.decode(response.body);
@@ -138,7 +138,7 @@ class _WartaJemaatState extends State<kegiatanGereja> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.network(
-                                  'http://172.20.10.2:2005/kegiatan/${beritaList[index]['id_waktu_kegiatan']}/image',
+                                  'http://172.20.10.4:2005/kegiatan/${beritaList[index]['id_waktu_kegiatan']}/image',
                                   fit: BoxFit.cover,
                                 ),
                               ),

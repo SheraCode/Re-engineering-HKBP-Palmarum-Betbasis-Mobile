@@ -120,7 +120,7 @@ class _KelolaDetailConfirmSidiState extends State<KelolaConfirmSidi> {
     var file = File(path);
 
     try {
-      var res = await http.get(Uri.parse("http://172.20.10.2:2005/download/sidi?id_registrasi_sidi=${widget.idRegistrasiSidi}"));
+      var res = await http.get(Uri.parse("http://172.20.10.4:2005/download/sidi?id_registrasi_sidi=${widget.idRegistrasiSidi}"));
       await file.writeAsBytes(res.bodyBytes);
       print("File downloaded to: $path");
       var snackBar = SnackBar(
@@ -187,7 +187,7 @@ class _KelolaDetailConfirmSidiState extends State<KelolaConfirmSidi> {
 
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/sidi/byid/${widget.idRegistrasiSidi}'), // Use widget.idRegistrasiSidi here
+        Uri.parse('http://172.20.10.4:2005/sidi/byid/${widget.idRegistrasiSidi}'), // Use widget.idRegistrasiSidi here
       );
 
       if (response.statusCode == 200) {
@@ -279,7 +279,7 @@ class _KelolaDetailConfirmSidiState extends State<KelolaConfirmSidi> {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     int idJemaat = decodedToken['id_jemaat'];
 
-    var uri = Uri.parse('http://172.20.10.2:2005/sidi/update');
+    var uri = Uri.parse('http://172.20.10.4:2005/sidi/update');
 
     var requestBody = {
       "id_jemaat": idJemaat,
@@ -381,7 +381,7 @@ class _KelolaDetailConfirmSidiState extends State<KelolaConfirmSidi> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Angkat Sidi",
+                                "Naik Sidi",
                                 style: TextStyle(
                                   fontSize: 30,
                                   color: Colors.white,
@@ -393,7 +393,7 @@ class _KelolaDetailConfirmSidiState extends State<KelolaConfirmSidi> {
                                 height: 10,
                               ),
                               Text(
-                                "Request Surat Angkat Sidi Jemaat",
+                                "Request Surat Naik Sidi Jemaat",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white54,

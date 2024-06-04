@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hkbp_palmarum_app/admin/AccountJemaat.dart';
 import 'package:hkbp_palmarum_app/admin/JadwalIbadah.dart';
 import 'package:hkbp_palmarum_app/admin/PelayanGereja.dart';
 import 'package:hkbp_palmarum_app/admin/PelayanIbadahKebaktian.dart';
@@ -9,6 +10,7 @@ import 'package:hkbp_palmarum_app/admin/baptis.dart';
 import 'package:hkbp_palmarum_app/admin/home.dart';
 import 'package:hkbp_palmarum_app/admin/kegiatan.dart';
 import 'package:hkbp_palmarum_app/admin/majelis.dart';
+import 'package:hkbp_palmarum_app/admin/noRegistrasiKeluarga.dart';
 import 'package:hkbp_palmarum_app/admin/pelayanIbadah.dart';
 import 'package:hkbp_palmarum_app/admin/pemasukan.dart';
 import 'package:hkbp_palmarum_app/admin/malua.dart';
@@ -106,7 +108,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
                 ),),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage('http://172.20.10.2:2005/jemaat/$id_user/image'),
+                  backgroundImage: NetworkImage('http://172.20.10.4:2005/jemaat/$id_user/image'),
                 ),
               )
           ),
@@ -182,6 +184,52 @@ class _DrawerWidgetState extends State<DrawerWidget> {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: () {
+              // Tambahkan logika untuk navigasi ke halaman wishlist di sini
+              // Contoh:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => noRegKel()),
+              );
+            },
+            child: ListTile(
+              leading: Icon(
+                Icons.list_alt,
+                color: Colors.blue,
+              ),
+              title: Text(
+                "Registrasi Keluarga",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              // Tambahkan logika untuk navigasi ke halaman wishlist di sini
+              // Contoh:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AccountJemaat()),
+              );
+            },
+            child: ListTile(
+              leading: Icon(
+                Icons.list_alt,
+                color: Colors.blue,
+              ),
+              title: Text(
+                "Jemaat",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
 
           GestureDetector(
             onTap: () {
@@ -198,7 +246,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 color: Colors.blue,
               ),
               title: Text(
-                "Marguru Manaksihon",
+                "Naik Sidi",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

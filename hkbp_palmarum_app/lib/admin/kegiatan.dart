@@ -23,7 +23,7 @@ class _KegiatanScreenState extends State<kegiatan> {
 
   Future<void> fetchKegiatan() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/berita'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/berita'));
 
       if (response.statusCode == 200) {
         List<dynamic> data = jsonDecode(response.body);
@@ -206,7 +206,7 @@ class _KegiatanScreenState extends State<kegiatan> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.network(
-                                    'http://172.20.10.2:2005/kegiatan/${kegiatanList[index]['id_waktu_kegiatan']}/image',
+                                    'http://172.20.10.4:2005/kegiatan/${kegiatanList[index]['id_waktu_kegiatan']}/image',
                                     width: 80,
                                     height: 80,
                                     fit: BoxFit.cover,
@@ -270,7 +270,7 @@ class _KegiatanScreenState extends State<kegiatan> {
       ),
       drawer: DrawerWidget(),
       floatingActionButton: Visibility(
-        visible: isApiActive, // Show FAB only when API is active
+        // Show FAB only when API is active
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(

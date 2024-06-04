@@ -133,7 +133,7 @@ class _createConfirmSidiState extends State<ConfirmSidi> {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     int idJemaat = decodedToken['id_jemaat'] as int; // Casting to int
 
-    var url = Uri.parse('http://172.20.10.2:2005/sidi/create');
+    var url = Uri.parse('http://172.20.10.4:2005/sidi/create');
     var request = http.MultipartRequest('POST', url);
 
     request.fields['id_jemaat'] = idJemaat.toString(); // Convert to String
@@ -245,7 +245,7 @@ class _createConfirmSidiState extends State<ConfirmSidi> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Angkat Sidi",
+                              "Naik Sidi",
                               style: TextStyle(
                                 fontSize: 30,
                                 color: Colors.white,
@@ -257,7 +257,7 @@ class _createConfirmSidiState extends State<ConfirmSidi> {
                               height: 10,
                             ),
                             Text(
-                              "Request Surat Angkat Sidi Jemaat",
+                              "Request Surat Naik Sidi Jemaat",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white54,
@@ -499,7 +499,7 @@ class _createConfirmSidiState extends State<ConfirmSidi> {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RegistrasiSidi()),
+                                MaterialPageRoute(builder: (context) => home()),
                               );
                             },
                             child: Container(

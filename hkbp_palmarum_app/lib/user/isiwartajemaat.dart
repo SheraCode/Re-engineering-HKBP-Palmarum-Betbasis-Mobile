@@ -21,7 +21,7 @@ class _IsiWartaJemaatState extends State<IsiWartaJemaat> {
 
   // Method to fetch the detail of the warta jemaat from the server
   Future<void> fetchWartaDetail() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/warta/${widget.id}'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/warta/${widget.id}'));
     if (response.statusCode == 200) {
       // Convert the response body to a List<Map<String, dynamic>>
       final List<dynamic> responseData = json.decode(response.body);

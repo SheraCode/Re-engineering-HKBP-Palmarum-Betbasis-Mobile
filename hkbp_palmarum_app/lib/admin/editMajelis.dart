@@ -60,7 +60,7 @@ class _TambahMajelisState extends State<EditMajelis> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/majelis-gereja/${widget.idMajelis}'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/majelis-gereja/${widget.idMajelis}'));
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         print('Response API: $responseData'); // Cetak respons API untuk melihat isinya
@@ -85,7 +85,7 @@ class _TambahMajelisState extends State<EditMajelis> {
 
       // Lakukan request HTTP untuk mengedit majelis dengan ID yang sesuai
       final response = await http.put(
-        Uri.parse('http://172.20.10.2:2005/majelis/edit/${widget.idMajelis}'),
+        Uri.parse('http://172.20.10.4:2005/majelis/edit/${widget.idMajelis}'),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -158,7 +158,7 @@ class _TambahMajelisState extends State<EditMajelis> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchPelayanIbadah() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/role-jemaat'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/role-jemaat'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
@@ -174,7 +174,7 @@ class _TambahMajelisState extends State<EditMajelis> {
   Future<void> _createMajelis() async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/majelis/create'),
+        Uri.parse('http://172.20.10.4:2005/majelis/create'),
         headers: {
           'Content-Type': 'application/json',
         },

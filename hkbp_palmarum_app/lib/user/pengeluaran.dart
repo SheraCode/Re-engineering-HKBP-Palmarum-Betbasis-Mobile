@@ -9,7 +9,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 // Fungsi untuk mengambil daftar pemasukan dari endpoint
 Future<List<dynamic>> fetchPengeluaranList() async {
-  final response = await http.get(Uri.parse('http://172.20.10.2:2005/pengeluaran'));
+  final response = await http.get(Uri.parse('http://172.20.10.4:2005/pengeluaran'));
 
   if (response.statusCode == 200) {
     return json.decode(response.body);

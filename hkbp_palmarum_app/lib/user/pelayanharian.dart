@@ -25,7 +25,7 @@ class _PelayanHarianState extends State<pelayanharian> {
       isLoading = true;
     });
     final response =
-    await http.get(Uri.parse('http://172.20.10.2:2005/pelayan-ibadah'));
+    await http.get(Uri.parse('http://172.20.10.4:2005/pelayan-ibadah'));
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
       print('pelayanGerejaList: $responseData'); // Tambahkan ini

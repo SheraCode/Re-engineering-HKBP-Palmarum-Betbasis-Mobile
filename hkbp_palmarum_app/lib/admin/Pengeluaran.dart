@@ -20,7 +20,7 @@ class _pengeluaranState extends State<pengeluaran> {
   bool isApiActive = true;
 
   Future<void> fetchData() async {
-    final Uri url = Uri.parse('http://172.20.10.2:2005/pengeluaran');
+    final Uri url = Uri.parse('http://172.20.10.4:2005/pengeluaran');
     try {
       final response = await http.get(url);
 

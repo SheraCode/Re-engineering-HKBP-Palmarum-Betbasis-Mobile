@@ -30,7 +30,7 @@ class _BaptisState extends State<baptis> {
   }
 
   Future<void> fetchBaptisData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/registrasi-baptis'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/registrasi-baptis'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);

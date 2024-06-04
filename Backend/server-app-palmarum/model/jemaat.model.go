@@ -32,6 +32,7 @@ type Jemaat struct {
 	IsMenikah               string `json:"isMenikah"`
 	IsMeninggal             string `json:"isMeninggal"`
 	IsRPP                   string `json:"isRPP"`
+	IDRegistrasiKeluarga    int    `json:"no_registrasi_keluarga"`
 	CreateAt                string `json:"create_at"`
 	UpdateAt                string `json:"update_at"`
 	IsDeleted               string `json:"is_deleted"`

@@ -84,7 +84,7 @@ class _createConfirmBaptisState extends State<ConfirmBaptis> {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     int idJemaat = decodedToken['id_jemaat'];
 
-    final url = 'http://172.20.10.2:2005/baptis/create';
+    final url = 'http://172.20.10.4:2005/baptis/create';
 
     final response = await http.post(
       Uri.parse(url),

@@ -52,7 +52,7 @@ class _TambahWartaState extends State<TambahWarta> {
       int idJemaat = decodedToken['id_jemaat'];
 
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/warta/create'),
+        Uri.parse('http://172.20.10.4:2005/warta/create'),
         headers: {
           'Content-Type': 'application/json', // Tambahkan header Content-Type
         },

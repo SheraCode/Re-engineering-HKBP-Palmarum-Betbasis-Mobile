@@ -27,7 +27,7 @@ class _PelayanState extends State<PelayanGereja> {
   Future<void> fetchData() async {
     try {
       final response =
-      await http.get(Uri.parse('http://172.20.10.2:2005/pelayan-majelis'));
+      await http.get(Uri.parse('http://172.20.10.4:2005/pelayan-majelis'));
       if (response.statusCode == 200) {
         setState(() {
           data = jsonDecode(response.body);
@@ -306,7 +306,7 @@ class _PelayanState extends State<PelayanGereja> {
   Future<void> _deleteMajelis(String idMajelis) async {
     try {
       final response =
-      await http.delete(Uri.parse('http://172.20.10.2:2005/pelayan-gereja/$idMajelis'));
+      await http.delete(Uri.parse('http://172.20.10.4:2005/pelayan-gereja/$idMajelis'));
       if (response.statusCode == 200) {
         // Refresh data setelah penghapusan berhasil
         fetchData();

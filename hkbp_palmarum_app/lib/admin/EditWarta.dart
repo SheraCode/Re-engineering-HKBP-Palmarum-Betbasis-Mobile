@@ -34,7 +34,7 @@ class _EditWartaState extends State<EditWarta> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/warta/${widget.idWarta}'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/warta/${widget.idWarta}'));
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
         print('Received JSON Data: $jsonData'); // Print JSON data for debugging
@@ -75,7 +75,7 @@ class _EditWartaState extends State<EditWarta> {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       int idJemaat = decodedToken['id_jemaat'];
       final response = await http.put(
-        Uri.parse('http://172.20.10.2:2005/warta/edit/${widget.idWarta}'),
+        Uri.parse('http://172.20.10.4:2005/warta/edit/${widget.idWarta}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

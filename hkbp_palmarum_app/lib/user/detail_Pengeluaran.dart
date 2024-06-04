@@ -11,7 +11,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 // Fungsi untuk mengambil detail pemasukan dari endpoint berdasarkan ID
 Future<Map<String, dynamic>> fetchPemasukanDetails(int pemasukanId) async {
-  final response = await http.get(Uri.parse('http://172.20.10.2:2005/pengeluaran/$pemasukanId'));
+  final response = await http.get(Uri.parse('http://172.20.10.4:2005/pengeluaran/$pemasukanId'));
 
   if (response.statusCode == 200) {
     return json.decode(response.body);

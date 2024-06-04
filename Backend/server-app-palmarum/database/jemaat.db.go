@@ -85,13 +85,13 @@ func UpdateJemaat(jemaatID string, u model.Jemaat) error {
 	}
 	defer db.Close()
 
-	stmt, err := db.Prepare("UPDATE jemaat SET nama_depan=?, nama_belakang=?, tgl_lahir = ?, jenis_kelamin=?, alamat=?, id_bidang_pendidikan=?, id_pekerjaan=?, no_hp=?, isBaptis=?, isMenikah=?, isMeninggal=?, keterangan=? ,email=? ,password=? ,id_pendidikan = ? ,id_hub_keluarga = ? ,bidang_pendidikan_lainnya = ? ,nama_pekerjaan_lainnya = ? ,id_kecamatan = ? ,gol_darah = ? ,isSidi = ? WHERE id_jemaat=?")
+	stmt, err := db.Prepare("UPDATE jemaat SET nama_depan=?, nama_belakang=?, tgl_lahir = ?, jenis_kelamin=?, alamat=?, id_bidang_pendidikan=?, id_pekerjaan=?, no_hp=?, isBaptis=?, isMenikah=?, isMeninggal=?, keterangan=? ,email=? ,password=? ,id_pendidikan = ? ,bidang_pendidikan_lainnya = ? ,nama_pekerjaan_lainnya = ? ,id_kecamatan = ? ,gol_darah = ? ,isSidi = ? WHERE id_jemaat=?")
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(u.NamaDepan, u.NamaBelakang, u.TGLLahir, u.JenisKelamin, u.Alamat, u.IDBidangPendidikan, u.IDPekerjaan, u.NoTelepon, u.IsBaptis, u.IsMenikah, u.IsMeninggal, u.Keterangan, u.Email, u.Password, u.IDPendidikan, u.IDHubKeluarga, u.BidangPendidikanLainnya, u.NamaPekerjaanLainnya, u.IDKecamatan, u.GolDarah, u.IsSidi, jemaatID)
+	_, err = stmt.Exec(u.NamaDepan, u.NamaBelakang, u.TGLLahir, u.JenisKelamin, u.Alamat, u.IDBidangPendidikan, u.IDPekerjaan, u.NoTelepon, u.IsBaptis, u.IsMenikah, u.IsMeninggal, u.Keterangan, u.Email, u.Password, u.IDPendidikan, u.BidangPendidikanLainnya, u.NamaPekerjaanLainnya, u.IDKecamatan, u.GolDarah, u.IsSidi, jemaatID)
 	if err != nil {
 		return err
 	}
@@ -130,7 +130,7 @@ func Login(email, password string) (model.Jemaat, error) {
 	defer db.Close()
 
 	// Prepare statement untuk memanggil stored procedure
-	stmt, err := db.Prepare("CALL LoginProcedure(?, ?, @jemaatID, @rolejemaat, @jemaatNamaDepan, @jemaatNamaBelakang, @jemaatEmail, @jemaatPassword, @jemaatGelarDepan, @jemaatGelarBelakang, @jemaatTempatLahir, @jemaatJenisKelamin, @jemaatIDHubKeluarga, @jemaatIDStatusPernikahan, @jemaatIDStatusAmaIna, @jemaatIDStatusAnak, @jemaatIDPendidikan, @jemaatIDBidangPendidikan, @jemaatBidangPendidikanLainnya, @jemaatIDPekerjaan, @jemaatNamaPekerjaanLainnya, @jemaatGolDarah, @jemaatAlamat, @jemaatIsSidi, @jemaatIDKecamatan, @jemaatNoTelepon, @jemaatNoHP, @jemaatFotoJemaat, @jemaatKeterangan, @jemaatIsBaptis, @jemaatIsMenikah, @jemaatIsMeninggal, @jemaatIsRPP, @jemaatCreateAt, @jemaatUpdateAt, @jemaatIsDeleted)")
+	stmt, err := db.Prepare("CALL LoginProcedure(?, ?, @jemaatID, @rolejemaat, @jemaatNamaDepan, @jemaatNamaBelakang, @jemaatEmail, @jemaatPassword, @jemaatGelarDepan, @jemaatGelarBelakang, @jemaatTempatLahir, @jemaatJenisKelamin, @jemaatIDHubKeluarga, @jemaatIDStatusPernikahan, @jemaatIDStatusAmaIna, @jemaatIDStatusAnak, @jemaatIDPendidikan, @jemaatIDBidangPendidikan, @jemaatBidangPendidikanLainnya, @jemaatIDPekerjaan, @jemaatNamaPekerjaanLainnya, @jemaatGolDarah, @jemaatAlamat, @jemaatIsSidi, @jemaatIDKecamatan, @jemaatNoTelepon, @jemaatNoHP, @jemaatFotoJemaat, @jemaatKeterangan, @jemaatIsBaptis, @jemaatIsMenikah, @jemaatIsMeninggal, @jemaatIsRPP, @jemaatCreateAt, @jemaatUpdateAt, @jemaatIsDeleted, @jemaatNoRegistrasi)")
 	if err != nil {
 		return jemaat, err
 	}
@@ -143,7 +143,7 @@ func Login(email, password string) (model.Jemaat, error) {
 	}
 
 	// Ambil nilai-nilai output dari stored procedure
-	err = db.QueryRow("SELECT @jemaatID, @rolejemaat ,@jemaatNamaDepan, @jemaatNamaBelakang, @jemaatEmail, @jemaatPassword, @jemaatGelarDepan, @jemaatGelarBelakang, @jemaatTempatLahir, @jemaatJenisKelamin, @jemaatIDHubKeluarga, @jemaatIDStatusPernikahan, @jemaatIDStatusAmaIna, @jemaatIDStatusAnak, @jemaatIDPendidikan, @jemaatIDBidangPendidikan, @jemaatBidangPendidikanLainnya, @jemaatIDPekerjaan, @jemaatNamaPekerjaanLainnya, @jemaatGolDarah, @jemaatAlamat, @jemaatIsSidi, @jemaatIDKecamatan, @jemaatNoTelepon, @jemaatNoHP, @jemaatFotoJemaat, @jemaatKeterangan, @jemaatIsBaptis, @jemaatIsMenikah, @jemaatIsMeninggal, @jemaatIsRPP, @jemaatCreateAt, @jemaatUpdateAt, @jemaatIsDeleted").Scan(&jemaat.IDJemaat, &jemaat.RoleJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.Email, &jemaat.Password, &jemaat.GelarDepan, &jemaat.GelarBelakang, &jemaat.TempatLahir, &jemaat.JenisKelamin, &jemaat.IDHubKeluarga, &jemaat.IDStatusPernikahan, &jemaat.IDStatusAmaIna, &jemaat.IDStatusAnak, &jemaat.IDPendidikan, &jemaat.IDBidangPendidikan, &jemaat.BidangPendidikanLainnya, &jemaat.IDPekerjaan, &jemaat.NamaPekerjaanLainnya, &jemaat.GolDarah, &jemaat.Alamat, &jemaat.IsSidi, &jemaat.IDKecamatan, &jemaat.NoTelepon, &jemaat.NoTelepon, &jemaat.FotoJemaat, &jemaat.Keterangan, &jemaat.IsBaptis, &jemaat.IsMenikah, &jemaat.IsMeninggal, &jemaat.IsRPP, &jemaat.CreateAt, &jemaat.UpdateAt, &jemaat.IsDeleted)
+	err = db.QueryRow("SELECT @jemaatID, @rolejemaat ,@jemaatNamaDepan, @jemaatNamaBelakang, @jemaatEmail, @jemaatPassword, @jemaatGelarDepan, @jemaatGelarBelakang, @jemaatTempatLahir, @jemaatJenisKelamin, @jemaatIDHubKeluarga, @jemaatIDStatusPernikahan, @jemaatIDStatusAmaIna, @jemaatIDStatusAnak, @jemaatIDPendidikan, @jemaatIDBidangPendidikan, @jemaatBidangPendidikanLainnya, @jemaatIDPekerjaan, @jemaatNamaPekerjaanLainnya, @jemaatGolDarah, @jemaatAlamat, @jemaatIsSidi, @jemaatIDKecamatan, @jemaatNoTelepon, @jemaatNoHP, @jemaatFotoJemaat, @jemaatKeterangan, @jemaatIsBaptis, @jemaatIsMenikah, @jemaatIsMeninggal, @jemaatIsRPP, @jemaatCreateAt, @jemaatUpdateAt, @jemaatIsDeleted, @jemaatNoRegistrasi").Scan(&jemaat.IDJemaat, &jemaat.RoleJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.Email, &jemaat.Password, &jemaat.GelarDepan, &jemaat.GelarBelakang, &jemaat.TempatLahir, &jemaat.JenisKelamin, &jemaat.IDHubKeluarga, &jemaat.IDStatusPernikahan, &jemaat.IDStatusAmaIna, &jemaat.IDStatusAnak, &jemaat.IDPendidikan, &jemaat.IDBidangPendidikan, &jemaat.BidangPendidikanLainnya, &jemaat.IDPekerjaan, &jemaat.NamaPekerjaanLainnya, &jemaat.GolDarah, &jemaat.Alamat, &jemaat.IsSidi, &jemaat.IDKecamatan, &jemaat.NoTelepon, &jemaat.NoTelepon, &jemaat.FotoJemaat, &jemaat.Keterangan, &jemaat.IsBaptis, &jemaat.IsMenikah, &jemaat.IsMeninggal, &jemaat.IsRPP, &jemaat.CreateAt, &jemaat.UpdateAt, &jemaat.IsDeleted, &jemaat.IDRegistrasiKeluarga)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return jemaat, errors.New("invalid credentials")
@@ -244,4 +244,184 @@ func GetRoleJemaat() ([]model.Jemaat, error) {
 	}
 
 	return jemaatRole, nil
+}
+
+func CreateAccountJemaat(nama_depan, nama_belakang string, id_registrasi_keluarga, id_hub_keluarga int) error {
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/db_gereja_hkbp")
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	_, err = db.Exec("CALL create_jemaat(?, ?, ?, ?)", nama_depan, nama_belakang, id_registrasi_keluarga, id_hub_keluarga)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func GetJemaatAllAccount() ([]model.Jemaat, error) {
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/db_gereja_hkbp")
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	rows, err := db.Query("CALL sp_get_jemaat()")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var jemaatList []model.Jemaat
+	for rows.Next() {
+		var jemaat model.Jemaat
+		err := rows.Scan(&jemaat.IDJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDRegistrasiKeluarga, &jemaat.IDHubKeluarga)
+		if err != nil {
+			return nil, err
+		}
+		jemaatList = append(jemaatList, jemaat)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return jemaatList, nil
+}
+
+func GetJemaatByIDAccount(idJemaat int) (*model.Jemaat, error) {
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/db_gereja_hkbp")
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	stmt, err := db.Prepare("CALL sp_get_jemaat_by_id(?)")
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+
+	var jemaat model.Jemaat
+	err = stmt.QueryRow(idJemaat).Scan(&jemaat.IDJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDRegistrasiKeluarga, &jemaat.IDHubKeluarga)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil // No result found
+		}
+		return nil, err
+	}
+
+	return &jemaat, nil
+}
+
+func UpdateJemaatAccount(idJemaat int, namaDepan, namaBelakang string, idRegistrasiKeluarga, idHubKeluarga int) error {
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/db_gereja_hkbp")
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	stmt, err := db.Prepare("CALL sp_update_jemaat(?, ?, ?, ?, ?)")
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(idJemaat, namaDepan, namaBelakang, idRegistrasiKeluarga, idHubKeluarga)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func GetJemaatByRegistrasiKeluarga(idRegistrasiKeluarga int) ([]model.Jemaat, error) {
+	db, err := sql.Open("mysql", DBUsername+":"+DBPassword+"@tcp("+DBHost+":"+DBPort+")/"+DBName)
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	rows, err := db.Query("CALL GetJemaatByRegistrasiKeluarga(?)", idRegistrasiKeluarga)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var jemaats []model.Jemaat
+	for rows.Next() {
+		var jemaat model.Jemaat
+		if err := rows.Scan(&jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDHubKeluarga); err != nil {
+			return nil, err
+		}
+		jemaats = append(jemaats, jemaat)
+	}
+	return jemaats, nil
+}
+
+func GetDataIsteri(idRegistrasiKeluarga int) ([]model.Jemaat, error) {
+	db, err := sql.Open("mysql", DBUsername+":"+DBPassword+"@tcp("+DBHost+":"+DBPort+")/"+DBName)
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	rows, err := db.Query("CALL GetIsteriKeluarga(?)", idRegistrasiKeluarga)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var jemaats []model.Jemaat
+	for rows.Next() {
+		var jemaat model.Jemaat
+		if err := rows.Scan(&jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDHubKeluarga); err != nil {
+			return nil, err
+		}
+		jemaats = append(jemaats, jemaat)
+	}
+	return jemaats, nil
+}
+
+func GetJemaatByRegistrasiKeluargaAndHubungan(idRegistrasiKeluarga int) ([]model.Jemaat, error) {
+	db, err := sql.Open("mysql", DBUsername+":"+DBPassword+"@tcp("+DBHost+":"+DBPort+")/"+DBName)
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	rows, err := db.Query("CALL GetDataAnak(?)", idRegistrasiKeluarga)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var jemaats []model.Jemaat
+	for rows.Next() {
+		var jemaat model.Jemaat
+		if err := rows.Scan(&jemaat.IDJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDHubKeluarga, &jemaat.JenisKelamin, &jemaat.TGLLahir, &jemaat.TempatLahir, &jemaat.IDRegistrasiKeluarga); err != nil {
+			return nil, err
+		}
+		jemaats = append(jemaats, jemaat)
+	}
+	return jemaats, nil
+}
+
+func GetDataJemaatById(idJemaat int) (model.Jemaat, error) {
+	var jemaat model.Jemaat
+
+	db, err := sql.Open("mysql", DBUsername+":"+DBPassword+"@tcp("+DBHost+":"+DBPort+")/"+DBName)
+	if err != nil {
+		return jemaat, err
+	}
+	defer db.Close()
+
+	err = db.QueryRow("CALL GetDataJemaatByIdREQ(?)", idJemaat).Scan(&jemaat.IDJemaat, &jemaat.NamaDepan, &jemaat.NamaBelakang, &jemaat.IDHubKeluarga, &jemaat.JenisKelamin, &jemaat.TGLLahir, &jemaat.TempatLahir, &jemaat.IDRegistrasiKeluarga)
+	if err != nil {
+		return jemaat, err
+	}
+
+	return jemaat, nil
 }

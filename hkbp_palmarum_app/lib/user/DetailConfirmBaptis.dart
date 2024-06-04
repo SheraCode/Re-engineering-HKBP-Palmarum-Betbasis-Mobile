@@ -44,7 +44,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
   }
   Future<void> _launchURL() async {
     // URL yang ingin dibuka di browser
-    final url = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=1';
+    final url = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=1';
 
     if (await canLaunch(url)) {
       await launch(
@@ -83,7 +83,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
     var file = File(path);
 
     try {
-      var res = await http.get(Uri.parse("http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}"));
+      var res = await http.get(Uri.parse("http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}"));
       await file.writeAsBytes(res.bodyBytes);
       print("File downloaded to: $path");
       var snackBar = SnackBar(
@@ -118,7 +118,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
 
 
   Future<void> downloadBaptisFile() async {
-    String url = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=1';
+    String url = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=1';
     String fileName = 'baptis.pdf';
 
     await downloadFile(url, fileName);
@@ -204,7 +204,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
       return;
     }
 
-    final url = 'http://172.20.10.2:2005/registrasi-baptis/$idRegistrasiBaptis';
+    final url = 'http://172.20.10.4:2005/registrasi-baptis/$idRegistrasiBaptis';
 
     final response = await http.get(
       Uri.parse(url),
@@ -262,7 +262,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
-       // _FileBaptisController.text = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}';
+       // _FileBaptisController.text = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}';
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -287,7 +287,7 @@ class _DetailConfirmBaptisState extends State<DetailConfirmBaptis> {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     int idJemaat = decodedToken['id_jemaat'];
 
-    final url = 'http://172.20.10.2:2005/baptis/create';
+    final url = 'http://172.20.10.4:2005/baptis/create';
 
     final response = await http.post(
       Uri.parse(url),

@@ -62,7 +62,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
     // Membuat request multipart
     var request = http.MultipartRequest(
       'PUT',
-      Uri.parse('http://172.20.10.2:2005/baptis'),
+      Uri.parse('http://172.20.10.4:2005/baptis'),
     );
 
     // Menambahkan data ke dalam request
@@ -181,7 +181,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
   }
   Future<void> _launchURL() async {
     // URL yang ingin dibuka di browser
-    final url = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=1';
+    final url = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=1';
 
     if (await canLaunch(url)) {
       await launch(
@@ -220,7 +220,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
     var file = File(path);
 
     try {
-      var res = await http.get(Uri.parse("http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}"));
+      var res = await http.get(Uri.parse("http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}"));
       await file.writeAsBytes(res.bodyBytes);
       print("File downloaded to: $path");
       var snackBar = SnackBar(
@@ -255,7 +255,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
 
 
   Future<void> downloadBaptisFile() async {
-    String url = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=1';
+    String url = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=1';
     String fileName = 'baptis.pdf';
 
     await downloadFile(url, fileName);
@@ -357,7 +357,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
       return;
     }
 
-    final url = 'http://172.20.10.2:2005/registrasi-baptis/$idRegistrasiBaptis';
+    final url = 'http://172.20.10.4:2005/registrasi-baptis/$idRegistrasiBaptis';
 
     final response = await http.get(
       Uri.parse(url),
@@ -403,7 +403,7 @@ class _DetailConfirmBaptisState extends State<kelolaBaptis> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
 
-        // _FileBaptisController.text = 'http://172.20.10.2:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}';
+        // _FileBaptisController.text = 'http://172.20.10.4:2005/download/baptis?id_registrasi_baptis=${widget.idRegistrasiBaptis}';
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -74,7 +74,7 @@ class _KelolaPemasukanState extends State<KelolaPemasukan> {
 
   Future<void> fetchData() async {
     try {
-      final Uri url = Uri.parse('http://172.20.10.2:2005/pemasukan/${widget.idPemasukan}');
+      final Uri url = Uri.parse('http://172.20.10.4:2005/pemasukan/${widget.idPemasukan}');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -120,7 +120,7 @@ class _KelolaPemasukanState extends State<KelolaPemasukan> {
         return; // Jangan lanjutkan proses jika gambar tidak dipilih
       }
 
-      var url = 'http://172.20.10.2:2005/pemasukan';
+      var url = 'http://172.20.10.4:2005/pemasukan';
       var request = http.MultipartRequest('PUT', Uri.parse(url));
 
       // Tambahkan gambar baru jika dipilih oleh pengguna
@@ -321,7 +321,7 @@ class _KelolaPemasukanState extends State<KelolaPemasukan> {
                             )
                                 : ClipOval(
                               child: Image.network(
-                                'http://172.20.10.2:2005/pemasukan/image/$idPemasukan',
+                                'http://172.20.10.4:2005/pemasukan/image/$idPemasukan',
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,

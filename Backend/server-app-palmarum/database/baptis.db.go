@@ -56,6 +56,7 @@ func UpdateRegistrasiBaptisData(idRegistrasiBaptis int, noSuratBaptis, namaPende
 
 	return nil
 }
+
 func GetRegistrasiBaptisByID(idRegistrasiBaptis int) (*model.Baptis, error) {
 	var result model.Baptis
 	var tanggalBaptis sql.NullString // Variabel untuk menampung nilai yang bisa NULL

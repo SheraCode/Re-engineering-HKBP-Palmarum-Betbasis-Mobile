@@ -213,6 +213,7 @@ func (jc *JemaatController) Login(c *gin.Context) {
 		"create_at":                 jemaat.CreateAt,
 		"update_at":                 jemaat.UpdateAt,
 		"is_deleted":                jemaat.IsDeleted,
+		"id_registrasi_keluarga":    jemaat.IDRegistrasiKeluarga,
 		"exp":                       time.Now().Add(time.Hour * 24).Unix(),
 	})
 
@@ -260,6 +261,142 @@ func (jc *JemaatController) GetJemaat(c *gin.Context) {
 	}
 
 	jemaat, err := database.GetJemaat(requestBody.IDJemaat)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaat)
+}
+
+func (wc *JemaatController) CreateAccount(c *gin.Context) {
+	var createAccount model.Jemaat
+	err := c.Bind(&createAccount)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// Buat data createAccount di database
+	err = database.CreateAccountJemaat(createAccount.NamaDepan, createAccount.NamaBelakang, createAccount.IDRegistrasiKeluarga, createAccount.IDHubKeluarga)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Account created successfully!"})
+}
+
+func (wc *JemaatController) GetJemaatALl(c *gin.Context) {
+	jemaatList, err := database.GetJemaatAllAccount()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaatList)
+}
+
+func (wc *JemaatController) GetJemaatByIDAccount(c *gin.Context) {
+	idParam := c.Param("id")
+	idJemaat, err := strconv.Atoi(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	jemaat, err := database.GetJemaatByIDAccount(idJemaat)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	if jemaat == nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Jemaat not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaat)
+}
+
+func (wc *JemaatController) UpdateJemaatAccount(c *gin.Context) {
+	idParam := c.Param("id")
+	idJemaat, err := strconv.Atoi(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	var updateData model.Jemaat
+	if err := c.BindJSON(&updateData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := database.UpdateJemaatAccount(idJemaat, updateData.NamaDepan, updateData.NamaBelakang, updateData.IDRegistrasiKeluarga, updateData.IDHubKeluarga); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Jemaat updated successfully!"})
+}
+
+func (jc *JemaatController) GetJemaatByRegistrasiKeluarga(c *gin.Context) {
+	idRegistrasiKeluarga, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid id_registrasi_keluarga"})
+		return
+	}
+
+	jemaats, err := database.GetJemaatByRegistrasiKeluarga(idRegistrasiKeluarga)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaats)
+}
+
+func (jc *JemaatController) GetDataIsteri(c *gin.Context) {
+	idRegistrasiKeluarga, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid id_registrasi_keluarga"})
+		return
+	}
+
+	jemaats, err := database.GetDataIsteri(idRegistrasiKeluarga)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaats)
+}
+
+func (jc *JemaatController) GetJemaatByRegistrasiKeluargaAndHubungan(c *gin.Context) {
+	idRegistrasiKeluarga, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid id_registrasi_keluarga"})
+		return
+	}
+
+	jemaats, err := database.GetJemaatByRegistrasiKeluargaAndHubungan(idRegistrasiKeluarga)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, jemaats)
+}
+
+func (jc *JemaatController) GetDataJemaatByIdREQ(c *gin.Context) {
+	idJemaat, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid id_jemaat"})
+		return
+	}
+
+	jemaat, err := database.GetDataJemaatById(idJemaat)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

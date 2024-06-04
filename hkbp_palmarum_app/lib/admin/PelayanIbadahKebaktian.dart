@@ -27,7 +27,7 @@ class _PelayanKebaktianIbadahtState extends State<PelayanKebaktian> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/pelayanan-ibadah-all'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/pelayanan-ibadah-all'));
       if (response.statusCode == 200) {
         setState(() {
           data = jsonDecode(response.body);
@@ -242,7 +242,7 @@ class _PelayanKebaktianIbadahtState extends State<PelayanKebaktian> {
       ),
       drawer: DrawerWidget(),
       floatingActionButton: Visibility(
-        visible: isApiActive, // Show FAB only when API is active
+        // Show FAB only when API is active
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(

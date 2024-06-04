@@ -38,7 +38,7 @@ class _IsiKegiatanState extends State<IsiKegiatan> {
   }
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/berita/${widget.idKegiatan}'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/berita/${widget.idKegiatan}'));
     if (response.statusCode == 200) {
       setState(() {
         kegiatanData = json.decode(response.body);
@@ -84,7 +84,7 @@ class _IsiKegiatanState extends State<IsiKegiatan> {
                     height: MediaQuery.of(context).size.height * 0.4,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage('http://172.20.10.2:2005/kegiatan/${widget.idKegiatan}/image'), // Menggunakan NetworkImage
+                        image: NetworkImage('http://172.20.10.4:2005/kegiatan/${widget.idKegiatan}/image'), // Menggunakan NetworkImage
                         fit: BoxFit.cover, // Sesuaikan gambar dengan ukuran Container
                       ),
                     ),

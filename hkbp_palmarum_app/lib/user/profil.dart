@@ -114,7 +114,7 @@ class _profilState extends State<profil> {
                     SizedBox(height: 20),
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: NetworkImage('http://172.20.10.2:2005/jemaat/$id_jemaat/image'),
+                      backgroundImage: NetworkImage('http://172.20.10.4:2005/jemaat/$id_jemaat/image'),
                     ),
                     SizedBox(height: 20),
 

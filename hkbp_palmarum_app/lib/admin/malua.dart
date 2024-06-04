@@ -32,7 +32,7 @@ class _MaluaState extends State<malua> {
   }
 
   Future<void> fetchBaptisData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/sidi/all'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/sidi/all'));
 
     if (response.statusCode == 200) {
       List<dynamic> jsonData = json.decode(response.body);
@@ -93,7 +93,7 @@ class _MaluaState extends State<malua> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Marguru Manaksihon",
+                              "Naik Sidi",
                               style: TextStyle(
                                   fontSize: 30,
                                   color: Colors.white,
@@ -102,7 +102,7 @@ class _MaluaState extends State<malua> {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "Request Surat Malua Jemaat",
+                              "Request Surat Naik Sidi Jemaat",
                               style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white54,
@@ -135,7 +135,7 @@ class _MaluaState extends State<malua> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            "Tidak Ada Request Sidi",
+                            "Tidak Ada Request Naik Sidi",
                             style: TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.bold,

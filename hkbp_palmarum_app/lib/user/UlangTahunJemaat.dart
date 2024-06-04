@@ -21,7 +21,7 @@ class _UlangTahunJemaatState extends State<UlangTahunJemaat> {
   }
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/jemaat/berulang-tahun'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/jemaat/berulang-tahun'));
     if (response.statusCode == 200) {
       setState(() {
         ulangTahunList = json.decode(response.body);
@@ -119,7 +119,7 @@ class _UlangTahunJemaatState extends State<UlangTahunJemaat> {
                     children: [
                       // Gambar jemaat
                       Image.network(
-                        'http://172.20.10.2:2005/jemaat/${jemaat['id_jemaat']}/image',
+                        'http://172.20.10.4:2005/jemaat/${jemaat['id_jemaat']}/image',
                         width: 100,
                         fit: BoxFit.cover,
                       ),

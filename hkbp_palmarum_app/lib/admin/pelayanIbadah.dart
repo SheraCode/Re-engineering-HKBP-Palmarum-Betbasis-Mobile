@@ -23,7 +23,7 @@ class _PelayanIbadahtState extends State<PelayanIbadah> {
 
   Future<void> fetchData() async {
     try {
-      final response = await http.get(Uri.parse('http://172.20.10.2:2005/pelayan-ibadah'));
+      final response = await http.get(Uri.parse('http://172.20.10.4:2005/pelayan-ibadah'));
       if (response.statusCode == 200) {
         setState(() {
           data = jsonDecode(response.body);
@@ -74,7 +74,7 @@ class _PelayanIbadahtState extends State<PelayanIbadah> {
   }
 
   Future<void> _deletePelayanKebaktian(String idPelayanKebaktian) async {
-    final url = Uri.parse('http://172.20.10.2:2005/pelayan-kebaktian/delete/$idPelayanKebaktian');
+    final url = Uri.parse('http://172.20.10.4:2005/pelayan-kebaktian/delete/$idPelayanKebaktian');
     try {
       final response = await http.delete(url);
       if (response.statusCode == 200) {

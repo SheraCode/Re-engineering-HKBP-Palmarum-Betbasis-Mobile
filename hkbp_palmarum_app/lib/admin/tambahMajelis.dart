@@ -71,7 +71,7 @@ class _TambahMajelisState extends State<TambahMajelis> {
   }
 
   Future<List<Map<String, dynamic>>> _fetchPelayanIbadah() async {
-    final response = await http.get(Uri.parse('http://172.20.10.2:2005/role-jemaat'));
+    final response = await http.get(Uri.parse('http://172.20.10.4:2005/role-jemaat'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
@@ -87,7 +87,7 @@ class _TambahMajelisState extends State<TambahMajelis> {
   Future<void> _createMajelis() async {
     try {
       final response = await http.post(
-        Uri.parse('http://172.20.10.2:2005/majelis/create'),
+        Uri.parse('http://172.20.10.4:2005/majelis/create'),
         headers: {
           'Content-Type': 'application/json',
         },

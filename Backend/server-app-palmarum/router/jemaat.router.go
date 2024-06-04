@@ -26,6 +26,7 @@ func SetupRouter() *gin.Engine {
 	PelayanChurch := controller.NewpelayanChruchController()
 	PernikahanController := controller.NewPernikahanController()
 	PelayanCreateController := controller.NewCreatePelayanController()
+	RegistrasiKeluarga := controller.NewnoRegistrasiController()
 
 	// Endpoint untuk membuat jemaat baru
 	// r.POST("/jemaat", jemaatController.CreateJemaat)
@@ -244,6 +245,42 @@ func SetupRouter() *gin.Engine {
 
 	// Endpoint untuk Create Pelayan Ibadah Data
 	r.POST("/pelayan-kebaktian/create", PelayanCreateController.CreateWarta)
+
+	// Endpoint untuk Create Registras_keluarga
+	r.POST("/registrasi-keluarga/create", RegistrasiKeluarga.CreatenoReg)
+
+	// Endpoint untuk Get All Data Keluarga
+	r.GET("/registrasi-keluarga", RegistrasiKeluarga.GetDataRegKeluarga)
+
+	// Endpoint untuk Update No Reg Kel
+	r.PUT("/registrasi-keluarga/update/:id", RegistrasiKeluarga.EditNoRegKel)
+
+	// Endpoint untuk Get By Id Data Keluarga
+	r.GET("/registrasi-keluarga/:id", RegistrasiKeluarga.GetNoRegById)
+
+	// Endpoint untuk create Registrasi Account Jemaat
+	r.POST("/jemaat/create/account", jemaatController.CreateAccount)
+
+	// Endpoint untuk Get All Data Jemaat Account
+	r.GET("/jemaat/account", jemaatController.GetJemaatALl)
+
+	// Endpoint untuk Get Jemaat ACcount by id
+	r.GET("/jemaat/account/:id", jemaatController.GetJemaatByIDAccount)
+
+	// Endpoint untuk Update Jemaat Account
+	r.PUT("/jemaat/account/edit/:id", jemaatController.UpdateJemaatAccount)
+
+	// Endpoint untuk Get Data Kepala keluarga
+	r.GET("/jemaat/kepala-keluarga/:id", jemaatController.GetJemaatByRegistrasiKeluarga)
+
+	// Endpoint untuk Get Data Isteri
+	r.GET("/jemaat/isteri-keluarga/:id", jemaatController.GetDataIsteri)
+
+	// Endpoint untuk Get Data Anak
+	r.GET("/jemaat/anak-keluarga/:id", jemaatController.GetJemaatByRegistrasiKeluargaAndHubungan)
+
+	// Endpoint untuk Get Data Anak Lengkap
+	r.GET("/jemaat-all/anak-keluarga/:id", jemaatController.GetDataJemaatByIdREQ)
 
 	return r
 }

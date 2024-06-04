@@ -60,7 +60,7 @@ class _TambahKegiatanState extends State<TambahKegiatan> {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       int idJemaat = decodedToken['id_jemaat'];
 
-      final uri = Uri.parse('http://172.20.10.2:2005/berita/create');
+      final uri = Uri.parse('http://172.20.10.4:2005/berita/create');
       final request = http.MultipartRequest('POST', uri);
 
       // Add form fields to the request

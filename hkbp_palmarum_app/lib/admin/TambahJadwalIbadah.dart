@@ -81,7 +81,7 @@ class _TambahJadwalIbadahState extends State<TambahJadwalIbadah> {
   Future<bool> _checkJadwalDanSesi(String sesiIbadahText, String tanggalIbadah) async {
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/jadwal-ibadah'),
+        Uri.parse('http://172.20.10.4:2005/jadwal-ibadah'),
       );
 
       if (response.statusCode == 200) {
@@ -144,7 +144,7 @@ class _TambahJadwalIbadahState extends State<TambahJadwalIbadah> {
         int idJemaat = decodedToken['id_jemaat'];
 
         final response = await http.post(
-          Uri.parse('http://172.20.10.2:2005/jadwal-ibadah/create'),
+          Uri.parse('http://172.20.10.4:2005/jadwal-ibadah/create'),
           headers: {
             'Content-Type': 'application/json',
           },

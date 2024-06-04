@@ -78,7 +78,7 @@ class _KelolaPernikahanState extends State<KelolaPernikahan> {
 
     try {
       final response = await http.get(
-        Uri.parse('http://172.20.10.2:2005/pernikahan/${widget.idRegistrasiNikah}'), // Use widget.idRegistrasiSidi here
+        Uri.parse('http://172.20.10.4:2005/pernikahan/${widget.idRegistrasiNikah}'), // Use widget.idRegistrasiSidi here
       );
 
       if (response.statusCode == 200) {
@@ -134,7 +134,7 @@ class _KelolaPernikahanState extends State<KelolaPernikahan> {
       return;
     }
 
-    final String url = 'http://172.20.10.2:2005/pernikahan/create';
+    final String url = 'http://172.20.10.4:2005/pernikahan/create';
 
     final response = await http.post(
       Uri.parse(url),
@@ -195,7 +195,7 @@ class _KelolaPernikahanState extends State<KelolaPernikahan> {
       return;
     }
 
-    final String url = 'http://172.20.10.2:2005/pernikahan/update/${widget.idRegistrasiNikah}';
+    final String url = 'http://172.20.10.4:2005/pernikahan/update/${widget.idRegistrasiNikah}';
 
     final response = await http.put(
       Uri.parse(url),

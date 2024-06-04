@@ -20,7 +20,7 @@ class _PemasukanState extends State<pemasukan> {
   bool isApiActive = true; // Flag to check if API is active
 
   Future<void> fetchData() async {
-    final Uri url = Uri.parse('http://172.20.10.2:2005/pemasukan');
+    final Uri url = Uri.parse('http://172.20.10.4:2005/pemasukan');
     try {
       final response = await http.get(url);
 
